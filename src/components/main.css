@@ -1,0 +1,37 @@
+main {
+  flex: 10 0 auto;
+  margin: 1rem;
+  min-height: 100vh;
+}
+
+ul,
+li {
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+.pokemon__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  background-color: rgb(255, 255, 255);
+  padding-block-end: 1.5rem;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.poke-id {
+  font-size: 0.8rem;
+}
+
+.poke-name {
+  font-size: 1.2rem;
+}
