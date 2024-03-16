@@ -3,6 +3,8 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   margin: 0;

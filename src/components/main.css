@@ -1,7 +1,6 @@
 main {
   flex: 10 0 auto;
   margin: 1rem;
-  min-height: 100vh;
 }
 
 ul,
@@ -11,6 +10,11 @@ li {
 
 ul li {
   list-style: none;
+}
+
+.pokemon__title {
+  font-family: 'Press Start 2P', system-ui;
+  color: #3b5da8;
 }
 
 .pokemon__list {
@@ -34,4 +38,27 @@ ul li {
 
 .poke-name {
   font-size: 1.2rem;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-block-start: 2rem;
+
+  button {
+    width: 120px;
+    height: 40px;
+    font-size: 1.1rem;
+    background-color: #3b5da8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.25s background-color;
+
+    &:hover {
+      background-color: #ff603c;
+    }
+  }
 }

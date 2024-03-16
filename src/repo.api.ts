@@ -9,41 +9,61 @@ export class RepoPoke {
   }
 
   async getAll(): Promise<Poke[]> {
-    let allPokemon: Poke[] = [];
-    let offset = 0;
-    const limit = 20; // Fetch 20 Pokémon at a time
-    let totalCount = 0;
+    const response = await fetch(this.urlPoke);
+    if (!response.ok) {
+      const message = `Error fetching pokemon: ${response.status} ${response.statusText}`;
+      throw new Error(message);
+    }
 
-    do {
-      const url = new URL('pokemon/', urlBase);
-      url.searchParams.append('offset', offset.toString());
-      url.searchParams.append('limit', limit.toString());
+    const responseData = await response.json();
 
-      const response = await fetch(url);
-      if (!response.ok) {
-        const message = `Error fetching pokemon: ${response.status} ${response.statusText}`;
-        throw new Error(message);
-      }
-
-      const responseData = await response.json();
-      allPokemon = allPokemon.concat(responseData.results);
-      totalCount = responseData.count;
-
-      offset += limit;
-    } while (allPokemon.length < totalCount);
-
-    return Promise.all(
-      allPokemon.map(async (pokemon: any) => {
+    const pokemonPromises: Promise<Poke>[] = responseData.results.map(
+      async (pokemon: any) => {
         const pokemonResponse = await fetch(pokemon.url);
         if (!pokemonResponse.ok) {
           throw new Error(`Error fetching details for ${pokemon.name}`);
         }
         return pokemonResponse.json();
-      })
+      }
     );
+
+    return Promise.all(pokemonPromises);
   }
 }
-//
+
+// let allPokemon: Poke[] = [];
+// let offset = 0;
+// const limit = 20; // Fetch 20 Pokémon at a time
+// let totalCount = 0;
+
+// do {
+//   const url = new URL('pokemon/', urlBase);
+//   url.searchParams.append('offset', offset.toString());
+//   url.searchParams.append('limit', limit.toString());
+
+//   const response = await fetch(url);
+//   if (!response.ok) {
+//     const message = `Error fetching pokemon: ${response.status} ${response.statusText}`;
+//     throw new Error(message);
+//   }
+
+//   const responseData = await response.json();
+//   allPokemon = allPokemon.concat(responseData.results);
+//   totalCount = responseData.count;
+
+//   offset += limit;
+// } while (allPokemon.length < totalCount);
+
+// return Promise.all(
+//   allPokemon.map(async (pokemon: any) => {
+//     const pokemonResponse = await fetch(pokemon.url);
+//     if (!pokemonResponse.ok) {
+//       throw new Error(`Error fetching details for ${pokemon.name}`);
+//     }
+//     return pokemonResponse.json();
+//   })
+// );
+
 // async add(pet: Omit<Poke, 'id'>): Promise<Poke> {
 //   const response = await fetch(this.urlPoke, {
 //     method: 'POST',

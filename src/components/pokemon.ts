@@ -37,8 +37,11 @@ export class Pokemon extends Component {
   createTemplate() {
     return `
     <section class="pokemon" aria-label="pokemon">
-      <div class="pokemon__add"></div>
-      <h2 class="pokemon__title">Pokemon</h2>
+      <div class=btns>
+        <button>Previous</button>
+        <h2 class="pokemon__title">POKEMON LIST</h2>
+        <button>Next</button>
+      </div>
       <ul class="pokemon__list">
       </ul>
     </section>
