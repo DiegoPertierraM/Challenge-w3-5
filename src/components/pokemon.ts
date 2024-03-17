@@ -12,7 +12,7 @@ export class Pokemon extends Component {
     super(selector);
     this.repo = new RepoPoke();
     this.repo
-      .getAll()
+      .getStartingPokemon()
       .then((pokemon) => {
         this.pokemon = pokemon;
         this.render();
@@ -32,15 +32,54 @@ export class Pokemon extends Component {
         new Card('.pokemon__list', pokemon);
       })
     );
+
+    document.querySelector('.next-btn')?.addEventListener('click', async () => {
+      this.unRender();
+      this.repo
+        .getNextPokemon()
+        .then((pokemon) => {
+          this.pokemon = pokemon;
+          this.render();
+        })
+        .catch((error) => {
+          console.log((error as Error).message);
+        });
+
+      await Promise.all(
+        this.pokemon.map(async (pokemon: Poke) => {
+          new Card('.pokemon__list', pokemon);
+        })
+      );
+    });
+
+    document.querySelector('.prev-btn')?.addEventListener('click', async () => {
+      if (this.repo.offset <= 0) throw new Error('Error: cannot go back');
+      this.unRender();
+      this.repo
+        .getPrevPokemon()
+        .then((pokemon) => {
+          this.pokemon = pokemon;
+          this.render();
+        })
+        .catch((error) => {
+          console.log((error as Error).message);
+        });
+
+      await Promise.all(
+        this.pokemon.map(async (pokemon: Poke) => {
+          new Card('.pokemon__list', pokemon);
+        })
+      );
+    });
   }
 
   createTemplate() {
     return `
     <section class="pokemon" aria-label="pokemon">
       <div class=btns>
-        <button>Previous</button>
+        <button class="prev-btn">Previous</button>
         <h2 class="pokemon__title">POKEMON LIST</h2>
-        <button>Next</button>
+        <button class="next-btn">Next</button>
       </div>
       <ul class="pokemon__list">
       </ul>
