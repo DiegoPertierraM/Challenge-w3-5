@@ -1,8 +1,9 @@
+import './poke-details.css';
 import { RepoPoke } from '../repo.api';
 import { Poke } from '../model/poke';
 import { Component } from './component';
 
-export class Pokemon extends Component {
+export class Details extends Component {
   pokemon: Poke[] = [];
 
   repo: RepoPoke;
@@ -10,15 +11,8 @@ export class Pokemon extends Component {
   constructor(selector: string) {
     super(selector);
     this.repo = new RepoPoke();
-    this.repo
-      .getStartingPokemon()
-      .then((pokemon) => {
-        this.pokemon = pokemon;
-        this.render();
-      })
-      .catch((error) => {
-        console.log((error as Error).message);
-      });
+    this.template = this.createTemplate();
+    this.render();
   }
 
   async render() {
@@ -28,8 +22,7 @@ export class Pokemon extends Component {
 
   createTemplate() {
     return `
-    <section class="pokemon" aria-label="pokemon">
-    </section>
+      <div class="poke-details">f</div>
     `;
   }
 }

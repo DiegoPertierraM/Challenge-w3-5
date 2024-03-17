@@ -11,14 +11,14 @@ nav {
     padding-block: 0.2rem;
     transition: 0.25s color;
     &:hover {
-      color: #ffcb05;
+      color: #3b5da8;
     }
   }
 
   li {
     margin-inline: 0.2rem;
     &:not(:first-child) {
-      border-left: 2px solid #e1b400;
+      border-left: 2px solid #3b5da8;
     }
   }
 }

@@ -1,10 +1,10 @@
 footer {
-  flex: 8 0 auto;
+  height: 5rem;
   text-align: center;
   background-color: #ff603c;
 
   address {
-    color: #fff8da;
     margin-block-start: 1.5rem;
+    color: #fff8da;
   }
 }

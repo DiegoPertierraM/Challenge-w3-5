@@ -1,7 +1,7 @@
 import { Component } from './component';
 import { Poke } from '../model/poke';
 
-export class Card extends Component {
+export class DetailsCard extends Component {
   pokemon: Poke;
   constructor(selector: string, pokemon: Poke) {
     super(selector);
@@ -37,11 +37,9 @@ export class Card extends Component {
   createTemplate() {
     const item = this.pokemon;
     return `
-    <div class="card">
       <ul class="pokemon">
         ${this.selectPokemonData(item)}
       </ul>
-    </div>
     `;
   }
 }

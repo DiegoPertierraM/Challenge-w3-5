@@ -15,11 +15,11 @@ export class Card extends Component {
   }
 
   selectPokemonData = (pokemon: Poke) => {
-    const spritesUrl = pokemon.sprites?.front_default || ''; // Check if sprites property exists
-    const id = pokemon.id || ''; // Check if id property exists
-    const name = pokemon.name || ''; // Check if name property exists
-    const type1 = pokemon.types[0]?.type?.name.toUpperCase() || ''; // Check if types array and its elements exist
-    const type2 = pokemon.types[1]?.type?.name.toUpperCase() || ''; // Check if types array and its elements exist
+    const spritesUrl = pokemon.sprites?.front_default || '';
+    const id = pokemon.id || '';
+    const name = pokemon.name || '';
+    const type1 = pokemon.types[0]?.type?.name.toUpperCase() || '';
+    const type2 = pokemon.types[1]?.type?.name.toUpperCase() || '';
     return `
       <li><img src="${spritesUrl}" width="150" alt="Imagen de ${name}"></li>
       <li class="poke-id">${id}</li>
@@ -31,11 +31,13 @@ export class Card extends Component {
   createTemplate() {
     const item = this.pokemon;
     return `
-    <div class="card">
-      <ul class="pokemon">
-        ${this.selectPokemonData(item)}
-      </ul>
-    </div>
+    <a class="poke-link">
+      <div class="card">
+          <ul class="pokemon">
+          ${this.selectPokemonData(item)}
+          </ul>
+      </div>
+    </a>
     `;
   }
 }
