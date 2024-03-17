@@ -1,6 +1,7 @@
 main {
   flex: 10 0 auto;
   margin: 1rem;
+  min-height: 100vh;
 }
 
 ul,
@@ -12,9 +13,24 @@ ul li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
+.pokemon {
+  a {
+    color: black;
+  }
+}
+
 .pokemon__title {
   font-family: 'Press Start 2P', system-ui;
   color: #3b5da8;
+  text-align: center;
+}
+
+.poke-count {
+  color: #ff603c;
 }
 
 .pokemon__list {
@@ -45,20 +61,28 @@ ul li {
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  margin-block-start: 2rem;
+  margin-block: 2rem;
 
   button {
-    width: 120px;
+    font-family: 'Press Start 2P', system-ui;
+    width: 150px;
     height: 40px;
-    font-size: 1.1rem;
-    background-color: #3b5da8;
+    font-size: 1rem;
+    background-color: #ff603c;
     color: white;
     border: none;
     cursor: pointer;
     transition: 0.25s background-color;
 
     &:hover {
-      background-color: #ff603c;
+      background-color: #ffcb05;
     }
+  }
+}
+
+@media (width < 500px) {
+  .btns {
+    flex-direction: column;
+    gap: 0px;
   }
 }
